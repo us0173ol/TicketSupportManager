@@ -33,6 +33,16 @@ public class Ticket {
         staticTicketIDCounter++;
     }
 
+    Ticket(int ID, String desc, int p, String rep, Date date, String res) {
+        this.description = desc;
+        this.priority = p;
+        this.reporter = rep;
+        this.dateReported = date;
+        this.resolution = res;
+        this.ticketID = ID;
+
+        staticTicketIDCounter++;
+    }
 
 
 

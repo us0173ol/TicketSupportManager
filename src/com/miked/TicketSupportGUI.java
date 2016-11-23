@@ -46,6 +46,19 @@ public class TicketSupportGUI extends JFrame {
             BufferedReader br = new BufferedReader(new FileReader("Tickets.txt"));
             String line = br.readLine();
             while(line != null){
+                //todo figure out reading in file...
+//                String [] splitTix = line.split(" ");
+//                int ID = Integer.parseInt(splitTix[1]);
+//                String description = splitTix[3 + 4];
+//                int priority = Integer.parseInt(splitTix[6]);
+//                String whoReported = splitTix[9];
+//                Date dateReported = new Date(Long.parseLong(splitTix[12+13+14+15]));
+//                String resolution = splitTix[17];
+//
+//                Ticket ticket = new Ticket(ID, description, priority, whoReported, dateReported, resolution);
+//                ticketQueListModel.addElement(ticket);
+
+
 
 
                 line = br.readLine();
