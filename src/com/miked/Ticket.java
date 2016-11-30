@@ -1,5 +1,9 @@
 package com.miked;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -12,7 +16,7 @@ public class Ticket {
     private String reporter; //Stores person or department who reported issue
     private String description;
     private Date dateReported;
-    private String resolution;
+    private String resolution = "none";
 
     //STATIC Counter - accessible to all Ticket objects.
     //If any Ticket object modifies this counter, all Ticket objects will have the modified value
@@ -20,8 +24,10 @@ public class Ticket {
     private static int staticTicketIDCounter = 1;
     //The ID for each ticket - instance variable. Each Ticket will have it's own ticketID variable
     protected int ticketID;
+    //format the date for easier reading
     SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy @ hh:mm a");
 
+    //ticket object
     Ticket(String desc, int p, String rep, Date date, String res) {
         this.description = desc;
         this.priority = p;
@@ -32,7 +38,7 @@ public class Ticket {
 
         staticTicketIDCounter++;
     }
-
+    //ticket object where ID is set
     Ticket(int ID, String desc, int p, String rep, Date date, String res) {
         this.description = desc;
         this.priority = p;
@@ -43,10 +49,7 @@ public class Ticket {
 
         staticTicketIDCounter++;
     }
-
-
-
-
+    //getters and setters not really used but just in case
     public String getResolution() {
         return resolution;
     }
@@ -111,10 +114,17 @@ public class Ticket {
         this.sdf = sdf;
     }
 
-    public String toString(){
-        return("ID= " + this.ticketID + " Issue: " + this.description + " Priority: " + (this.priority +1) + " Reported by: "
-                + this.reporter + " Reported on: " + sdf.format(this.dateReported) + " Resolution: " + resolution);
+    public String toString(){//still needed to write and read for files
+        return( this.ticketID + ";" + this.description + ";" + (this.priority +1) + ";"
+                + this.reporter + ";" + sdf.format(this.dateReported) + ";" + resolution);
     }
+    //set up an easy way to split line for file writing and reading
+    public String lineForFile(){
+        String priorityFF = Integer.toString(this.priority + 1);
+        String dateReportedFF = sdf.format(this.dateReported);
+        return( this.ticketID + ";" + this.description + ";" + priorityFF + ";"
+                + this.reporter + ";" + dateReportedFF + ";" + resolution);
 
+    }
 
 }
